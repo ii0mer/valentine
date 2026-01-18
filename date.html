@@ -3,141 +3,99 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pick Our Online Date</title>
-    <link rel="stylesheet" href="css/date.css" />
+    <title>Online Date 💌</title>
+    <link rel="stylesheet" href="css/theme.css" />
   </head>
 
   <body>
     <main class="wrap">
-      <header class="top">
-        <div class="badge">LONG DISTANCE • SAME HEART</div>
-        <h1 class="title">Okay Noorain, pick our online date 💘</h1>
-        <p class="subtitle">We will make it feel like we are in the same room 🤍</p>
-      </header>
+      <section class="card" style="padding:18px 16px 18px;">
+        <div class="title">Okay <span class="pink">نونو</span>… pick our online date 💘</div>
+        <p class="subtitle">Pick the vibe, then (optional) choose a day/time.</p>
 
-      <section class="grid" aria-label="Online date options">
-        <button
-          class="card"
-          type="button"
-          data-choice="Movie Night 🎬"
-          data-note="We choose a movie + call + live reactions 🍿"
-        >
-          <div class="emoji">🎬</div>
-          <div class="cardTitle">Movie Night</div>
-          <div class="cardText">Same movie • same time • video call</div>
-          <div class="cardFoot">I will bring the snacks (virtually) 🍿</div>
-        </button>
-
-        <button
-          class="card"
-          type="button"
-          data-choice="Game Night 🎮"
-          data-note="You choose the game... I will try not to lose 😅"
-        >
-          <div class="emoji">🎮</div>
-          <div class="cardTitle">Game Night</div>
-          <div class="cardText">Fun • chaos • laughs</div>
-          <div class="cardFoot">Loser says something sweet 💖</div>
-        </button>
-
-        <button
-          class="card"
-          type="button"
-          data-choice="Late Night Talk ☎️"
-          data-note="No distractions. Just you and me."
-        >
-          <div class="emoji">☎️</div>
-          <div class="cardTitle">Late Night Talk</div>
-          <div class="cardText">Soft vibes • real talk</div>
-          <div class="cardFoot">We catch up properly 🤍</div>
-        </button>
-
-        <button
-          class="card"
-          type="button"
-          data-choice="Food Date 🍔"
-          data-note="We order food at the same time and eat together on call 😋"
-        >
-          <div class="emoji">🍔</div>
-          <div class="cardTitle">Food Date</div>
-          <div class="cardText">Same time • same vibe</div>
-          <div class="cardFoot">You pick the place 😌</div>
-        </button>
-      </section>
-
-      <section class="panel" aria-label="Schedule">
-        <h2 class="panelTitle">When should we do it?</h2>
-        <p class="panelText">Pick a day/time that suits you - I will make it work.</p>
-
-        <div class="row">
-          <div class="field">
-            <label for="day">Day</label>
-            <input id="day" type="date" />
+        <div class="grid" id="choices">
+          <div class="option" data-choice="Movie Night 🎬" data-note="We pick a movie + call + live reactions 😄">
+            <div class="optionTitle">Movie Night 🎬</div>
+            <p class="optionText">Same movie • same time • video call</p>
           </div>
-          <div class="field">
-            <label for="time">Time</label>
-            <input id="time" type="time" />
+
+          <div class="option" data-choice="Game Night 🎮" data-note="You choose the game… I’ll try not to lose 😅">
+            <div class="optionTitle">Game Night 🎮</div>
+            <p class="optionText">Fun + chaos + laughs</p>
+          </div>
+
+          <div class="option" data-choice="Late Night Talk ☎️" data-note="No distractions. Just you and me.">
+            <div class="optionTitle">Late Night Talk ☎️</div>
+            <p class="optionText">Soft vibes • real talk</p>
+          </div>
+
+          <div class="option" data-choice="Food Date 🍔" data-note="We order food at the same time and eat together on call 😋">
+            <div class="optionTitle">Food Date 🍔</div>
+            <p class="optionText">Same time • same vibe</p>
           </div>
         </div>
 
-        <div class="picked">
-          <span class="pickedLabel">Chosen:</span>
-          <span id="pickedChoice" class="pickedValue">Tap an option above ✨</span>
+        <div style="margin-top:14px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+          <span class="pill" id="pickedPill">Chosen: tap an option ✨</span>
         </div>
 
-        <button id="continueBtn" class="confirm" type="button" disabled>
-          Continue 💌
-        </button>
+        <div style="margin-top:12px; display:grid; gap:10px; grid-template-columns:1fr 1fr;">
+          <div style="text-align:left;">
+            <div style="font-size:12px; color:rgba(59,43,43,.65); margin-bottom:6px;">Day (optional)</div>
+            <input id="day" type="date" style="width:100%; padding:12px; border-radius:16px; border:1px solid rgba(255,95,158,.22); background:rgba(255,255,255,.75);" />
+          </div>
 
-        <p class="tiny">(If you do not pick a time, we will decide on call 😄)</p>
+          <div style="text-align:left;">
+            <div style="font-size:12px; color:rgba(59,43,43,.65); margin-bottom:6px;">Time (optional)</div>
+            <input id="time" type="time" style="width:100%; padding:12px; border-radius:16px; border:1px solid rgba(255,95,158,.22); background:rgba(255,255,255,.75);" />
+          </div>
+        </div>
+
+        <div style="margin-top:14px;">
+          <button class="btn btnPrimary btnFull" id="continueBtn" disabled>
+            Continue 💌
+          </button>
+          <div class="smallNote">If you don’t choose time, it means “whenever you’re free” 😄</div>
+        </div>
+
+        <img src="cat.gif" alt="cat" class="imgHero" />
       </section>
-
-      <footer class="bottom">
-        <img class="cat" src="cat.gif" alt="cute cat" />
-      </footer>
     </main>
 
     <script>
-      const cards = document.querySelectorAll(".card");
-      const pickedChoice = document.getElementById("pickedChoice");
+      const cards = document.querySelectorAll(".option");
+      const pickedPill = document.getElementById("pickedPill");
       const continueBtn = document.getElementById("continueBtn");
-      const dayInput = document.getElementById("day");
-      const timeInput = document.getElementById("time");
+      const day = document.getElementById("day");
+      const time = document.getElementById("time");
 
       let choice = "";
       let note = "";
 
-      // Min date = today
-      const today = new Date();
-      const yyyy = today.getFullYear();
-      const mm = String(today.getMonth() + 1).padStart(2, "0");
-      const dd = String(today.getDate()).padStart(2, "0");
-      dayInput.min = `${yyyy}-${mm}-${dd}`;
+      // Min date: today
+      const t = new Date();
+      const yyyy = t.getFullYear();
+      const mm = String(t.getMonth()+1).padStart(2,"0");
+      const dd = String(t.getDate()).padStart(2,"0");
+      day.min = `${yyyy}-${mm}-${dd}`;
 
-      cards.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          cards.forEach((b) => b.classList.remove("active"));
-          btn.classList.add("active");
-
-          choice = btn.getAttribute("data-choice") || "";
-          note = btn.getAttribute("data-note") || "";
-
-          pickedChoice.textContent = choice + " ✨";
+      cards.forEach(c => {
+        c.addEventListener("click", () => {
+          cards.forEach(x => x.classList.remove("active"));
+          c.classList.add("active");
+          choice = c.dataset.choice;
+          note = c.dataset.note;
+          pickedPill.textContent = "Chosen: " + choice;
           continueBtn.disabled = false;
         });
       });
 
       continueBtn.addEventListener("click", () => {
-        const day = dayInput.value || "Any day";
-        const time = timeInput.value || "Any time";
-        const when = `${day} • ${time}`;
-
-        // Store for recap later pages
-        localStorage.setItem(
-          "valentine_plan",
-          JSON.stringify({ choice, note, when })
-        );
-
+        const whenDay = day.value ? day.value : "Any day";
+        const whenTime = time.value ? time.value : "Any time";
+        localStorage.setItem("online_choice", choice);
+        localStorage.setItem("online_note", note);
+        localStorage.setItem("online_when", `${whenDay} • ${whenTime}`);
         location.href = "food.html";
       });
     </script>
