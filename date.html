@@ -11,7 +11,7 @@
     <main class="wrap">
       <section class="card" style="padding:18px 16px 18px;">
         <div class="title">Okay <span class="pink">نونو</span>… pick our online date 💘</div>
-        <p class="subtitle">Pick the vibe, then (optional) choose a day/time.</p>
+        <p class="subtitle">Pick one vibe. Then (optional) choose the day.</p>
 
         <div class="grid" id="choices">
           <div class="option" data-choice="Movie Night 🎬" data-note="We pick a movie + call + live reactions 😄">
@@ -19,46 +19,38 @@
             <p class="optionText">Same movie • same time • video call</p>
           </div>
 
-          <div class="option" data-choice="Game Night 🎮" data-note="You choose the game… I’ll try not to lose 😅">
-            <div class="optionTitle">Game Night 🎮</div>
-            <p class="optionText">Fun + chaos + laughs</p>
+          <div class="option" data-choice="Roblox 🎮" data-note="You carry, I follow 😭">
+            <div class="optionTitle">Roblox 🎮</div>
+            <p class="optionText">We play together • you bully me if I’m bad</p>
           </div>
 
-          <div class="option" data-choice="Late Night Talk ☎️" data-note="No distractions. Just you and me.">
-            <div class="optionTitle">Late Night Talk ☎️</div>
-            <p class="optionText">Soft vibes • real talk</p>
+          <div class="option" data-choice="Late Night Convos ☎️" data-note="You can bully me all you want 😌">
+            <div class="optionTitle">Late Night Convos ☎️</div>
+            <p class="optionText">Soft vibes • real talk • no distractions</p>
           </div>
 
-          <div class="option" data-choice="Food Date 🍔" data-note="We order food at the same time and eat together on call 😋">
-            <div class="optionTitle">Food Date 🍔</div>
-            <p class="optionText">Same time • same vibe</p>
+          <div class="option" data-choice="Video Call + Food 🍱" data-note="We eat together on call like we’re in the same place 🤍">
+            <div class="optionTitle">Video Call + Food 🍱</div>
+            <p class="optionText">Same time • same vibe • you choose the food</p>
           </div>
         </div>
 
-        <div style="margin-top:14px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
-          <span class="pill" id="pickedPill">Chosen: tap an option ✨</span>
+        <div style="margin-top:14px;">
+          <span class="pill" id="pickedPill" style="font-size:15px;">Chosen: tap an option ✨</span>
         </div>
 
-        <div style="margin-top:12px; display:grid; gap:10px; grid-template-columns:1fr 1fr;">
-          <div style="text-align:left;">
-            <div style="font-size:12px; color:rgba(59,43,43,.65); margin-bottom:6px;">Day (optional)</div>
-            <input id="day" type="date" style="width:100%; padding:12px; border-radius:16px; border:1px solid rgba(255,95,158,.22); background:rgba(255,255,255,.75);" />
-          </div>
-
-          <div style="text-align:left;">
-            <div style="font-size:12px; color:rgba(59,43,43,.65); margin-bottom:6px;">Time (optional)</div>
-            <input id="time" type="time" style="width:100%; padding:12px; border-radius:16px; border:1px solid rgba(255,95,158,.22); background:rgba(255,255,255,.75);" />
-          </div>
+        <div style="margin-top:14px; text-align:left;">
+          <div style="font-size:12px; color:rgba(47,34,34,.62); margin:0 0 6px 6px;">Day (optional)</div>
+          <input id="day" type="date"
+            style="width:100%; padding:14px 12px; border-radius:18px; border:1px solid rgba(255,95,158,.22); background:rgba(255,255,255,.78); font-size:16px;" />
         </div>
 
         <div style="margin-top:14px;">
           <button class="btn btnPrimary btnFull" id="continueBtn" disabled>
             Continue 💌
           </button>
-          <div class="smallNote">If you don’t choose time, it means “whenever you’re free” 😄</div>
+          <div class="tip" style="margin-top:10px;">No day chosen = “whenever you’re free” 😄</div>
         </div>
-
-        <img src="cat.gif" alt="cat" class="imgHero" />
       </section>
     </main>
 
@@ -67,12 +59,10 @@
       const pickedPill = document.getElementById("pickedPill");
       const continueBtn = document.getElementById("continueBtn");
       const day = document.getElementById("day");
-      const time = document.getElementById("time");
 
       let choice = "";
       let note = "";
 
-      // Min date: today
       const t = new Date();
       const yyyy = t.getFullYear();
       const mm = String(t.getMonth()+1).padStart(2,"0");
@@ -92,10 +82,9 @@
 
       continueBtn.addEventListener("click", () => {
         const whenDay = day.value ? day.value : "Any day";
-        const whenTime = time.value ? time.value : "Any time";
         localStorage.setItem("online_choice", choice);
         localStorage.setItem("online_note", note);
-        localStorage.setItem("online_when", `${whenDay} • ${whenTime}`);
+        localStorage.setItem("online_when", whenDay);
         location.href = "food.html";
       });
     </script>
