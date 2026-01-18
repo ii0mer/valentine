@@ -1,0 +1,174 @@
+:root{
+  --bg1:#fff5e4;
+  --bg2:#ffe3e1;
+  --accent:#ff5f9e;
+  --accent2:#ff9494;
+  --text:#3b2b2b;
+  --muted:rgba(59,43,43,.72);
+  --card:rgba(255,255,255,.72);
+  --stroke:rgba(255,95,158,.22);
+  --shadow:0 18px 40px rgba(0,0,0,.12);
+  --radius:22px;
+}
+
+*{ box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
+
+html,body{
+  margin:0;
+  padding:0;
+  font-family: ui-rounded, system-ui, -apple-system, "SF Pro Display", "SF Pro Text", Segoe UI, Roboto, Arial, sans-serif;
+  color:var(--text);
+  background: radial-gradient(1200px 600px at 50% 0%, var(--bg2), var(--bg1));
+}
+
+.wrap{
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 18px 16px 34px;
+  text-align:center;
+}
+
+.card{
+  background: linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,255,255,.60));
+  border: 1px solid var(--stroke);
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+}
+
+.title{
+  font-size: 30px;
+  line-height: 1.15;
+  margin: 14px 0 8px;
+  letter-spacing: .2px;
+}
+
+.subtitle{
+  font-size: 16px;
+  color: var(--muted);
+  margin: 0 auto;
+  max-width: 520px;
+}
+
+.pink{
+  color: var(--accent);
+  font-weight: 900;
+}
+
+.row{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top: 16px;
+}
+
+.btn{
+  appearance:none;
+  border:none;
+  cursor:pointer;
+  font-weight: 900;
+  font-size: 17px;
+  padding: 14px 18px;
+  border-radius: 18px;
+  box-shadow: 0 14px 24px rgba(255,95,158,.22);
+  transition: transform .12s ease, opacity .12s ease;
+  min-width: 150px;
+}
+
+.btn:active{ transform: scale(.98); }
+
+.btnPrimary{
+  color:white;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+}
+
+.btnGhost{
+  color: var(--accent);
+  background: rgba(255,255,255,.75);
+  border: 1px solid rgba(255,95,158,.25);
+  box-shadow: 0 10px 18px rgba(0,0,0,.08);
+}
+
+.btnFull{
+  width:100%;
+  max-width: 520px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+@media (min-width: 640px){
+  .grid{ grid-template-columns: 1fr 1fr; }
+}
+
+.option{
+  text-align:left;
+  padding: 14px 14px;
+  border-radius: 18px;
+  border: 1px solid var(--stroke);
+  background: rgba(255,255,255,.68);
+  box-shadow: 0 12px 22px rgba(0,0,0,.08);
+  cursor:pointer;
+  transition: transform .12s ease, opacity .12s ease, border-color .12s ease;
+}
+
+.option:hover{ transform: translateY(-1px); }
+.option:active{ transform: translateY(1px); }
+.option.active{
+  border-color: rgba(255,95,158,.55);
+  outline: 3px solid rgba(255,95,158,.14);
+}
+
+.optionTitle{
+  font-size: 17px;
+  font-weight: 900;
+  margin: 2px 0 6px;
+}
+
+.optionText{
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0;
+}
+
+.pill{
+  display:inline-block;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,95,158,.22);
+  background: rgba(255,255,255,.60);
+  font-size: 13px;
+  color: rgba(59,43,43,.82);
+}
+
+.imgHero{
+  width:min(320px, 78vw);
+  height:auto;
+  border-radius: 18px;
+  margin-top: 14px;
+  box-shadow: 0 18px 38px rgba(0,0,0,.12);
+}
+
+.smallNote{
+  font-size: 12px;
+  color: rgba(59,43,43,.55);
+  margin-top: 10px;
+}
+
+/* tiny floating hearts for vibe */
+.floatHeart{
+  position: fixed;
+  bottom: -30px;
+  pointer-events:none;
+  animation: floatUp 3.2s ease-in forwards;
+  opacity: .95;
+}
+@keyframes floatUp{
+  0%{ transform: translateY(0); opacity: 0; }
+  15%{ opacity: 1; }
+  100%{ transform: translateY(-110vh); opacity: 0; }
+}
