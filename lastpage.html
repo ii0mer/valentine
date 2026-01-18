@@ -3,122 +3,114 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="css/flower.css" />
+    <title>For You 💐</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <style>
+      /* Full-screen flower background */
+      body{
+        overflow-x:hidden;
+      }
+      .flowerField{
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events:none;
+        background:
+          radial-gradient(18px 18px at 10% 85%, rgba(255,95,158,.20), transparent 60%),
+          radial-gradient(16px 16px at 22% 78%, rgba(255,148,148,.22), transparent 60%),
+          radial-gradient(22px 22px at 35% 90%, rgba(255,95,158,.18), transparent 60%),
+          radial-gradient(18px 18px at 55% 80%, rgba(255,148,148,.22), transparent 60%),
+          radial-gradient(20px 20px at 72% 88%, rgba(255,95,158,.18), transparent 60%),
+          radial-gradient(16px 16px at 88% 76%, rgba(255,148,148,.22), transparent 60%),
+          radial-gradient(22px 22px at 92% 92%, rgba(255,95,158,.16), transparent 60%),
+          radial-gradient(1200px 600px at 50% 0%, #ffe3e1, #fff5e4);
+        animation: drift 10s ease-in-out infinite alternate;
+      }
+      @keyframes drift{
+        from{ filter: saturate(1.05); transform: translateY(0px); }
+        to{ filter: saturate(1.15); transform: translateY(-10px); }
+      }
+
+      .content{
+        position: relative;
+        z-index: 1;
+      }
+
+      .recap{
+        padding:16px 14px;
+        margin-top: 10px;
+        text-align:left;
+      }
+      .recap h2{
+        margin:0 0 10px;
+        font-size: 18px;
+      }
+      .line{
+        margin: 8px 0;
+        color: rgba(59,43,43,.82);
+        font-size: 15px;
+      }
+      .label{
+        font-size:12px;
+        color: rgba(59,43,43,.55);
+        text-transform: uppercase;
+        letter-spacing: .6px;
+        margin-right: 8px;
+      }
+    </style>
   </head>
+
   <body>
-    <div id="recap" style="max-width: 860px; margin: 0 auto 10px; padding: 12px 12px 6px;"></div>
-    <div id="thankyou"><b>Thank you for being my girlfriend</b></div>
-    <div class="flower">
-      <div class="f-wrapper">
-        <div class="flower__line"></div>
-        <div class="f">
-          <div class="flower__leaf flower__leaf--1"></div>
-          <div class="flower__leaf flower__leaf--2"></div>
-          <div class="flower__leaf flower__leaf--3"></div>
-          <div class="flower__leaf flower__leaf--4"></div>
-          <div class="flower__leaf flower__leaf--5"></div>
-          <div class="flower__leaf flower__leaf--6"></div>
-          <div class="flower__leaf flower__leaf--7"></div>
-          <div
-            class="flower__leaf flower__leaf--8 flower__fall-down--yellow"
-          ></div>
-        </div>
-      </div>
+    <div class="flowerField"></div>
 
-      <div class="f-wrapper f-wrapper--2">
-        <div class="flower__line"></div>
-        <div class="f">
-          <div class="flower__leaf flower__leaf--1"></div>
-          <div class="flower__leaf flower__leaf--2"></div>
-          <div class="flower__leaf flower__leaf--3"></div>
-          <div class="flower__leaf flower__leaf--4"></div>
-          <div class="flower__leaf flower__leaf--5"></div>
-          <div class="flower__leaf flower__leaf--6"></div>
-          <div class="flower__leaf flower__leaf--7"></div>
-          <div
-            class="flower__leaf flower__leaf--8 flower__fall-down--pink"
-          ></div>
-        </div>
-      </div>
+    <main class="wrap content">
+      <section class="card" style="padding:18px 16px 22px;">
+        <div class="title">For you, always 💐</div>
+        <p class="subtitle">
+          Even miles apart, you’re still my favorite person. 🤍
+        </p>
 
-      <div class="f-wrapper f-wrapper--3">
-        <div class="flower__line"></div>
-        <div class="f">
-          <div class="flower__leaf flower__leaf--1"></div>
-          <div class="flower__leaf flower__leaf--2"></div>
-          <div class="flower__leaf flower__leaf--3"></div>
-          <div class="flower__leaf flower__leaf--4"></div>
-          <div class="flower__leaf flower__leaf--5"></div>
-          <div class="flower__leaf flower__leaf--6"></div>
-          <div class="flower__leaf flower__leaf--7"></div>
-          <div
-            class="flower__leaf flower__leaf--8 flower__fall-down--purple"
-          ></div>
+        <section class="card recap" style="box-shadow:none;">
+          <h2>Our plan ✨</h2>
+          <div class="line"><span class="label">Online date</span> <span id="r1">—</span></div>
+          <div class="line"><span class="label">When</span> <span id="r2">—</span></div>
+          <div class="line"><span class="label">Food</span> <span id="r3">—</span></div>
+          <div class="line"><span class="label">Dessert</span> <span id="r4">—</span></div>
+        </section>
+
+        <div style="margin-top:14px;">
+          <button class="btn btnPrimary btnFull" onclick="location.href='index.html'">
+            Replay 🔁
+          </button>
         </div>
-      </div>
-      <div class="flower__glass"></div>
-    </div>
+
+        <div class="smallNote">P.S. you choosing “Yes” is my favorite decision 😄</div>
+      </section>
+    </main>
 
     <script>
-      (function () {
-        function safeParse(key) {
-          try {
-            return JSON.parse(localStorage.getItem(key) || "null");
-          } catch (e) {
-            return null;
-          }
-        }
+      const online = localStorage.getItem("online_choice") || "—";
+      const when = localStorage.getItem("online_when") || "—";
+      const food = localStorage.getItem("food_choice") || "—";
+      const dessert = localStorage.getItem("dessert_choice") || "—";
 
-        const plan = safeParse("valentine_plan");
-        const food = safeParse("valentine_food") || [];
-        const dessert = safeParse("valentine_dessert") || [];
-        const acts = safeParse("valentine_activities") || [];
+      document.getElementById("r1").textContent = online;
+      document.getElementById("r2").textContent = when;
+      document.getElementById("r3").textContent = food;
+      document.getElementById("r4").textContent = dessert;
 
-        const parts = [];
-        if (plan && (plan.choice || plan.when)) {
-          parts.push('<div style="font-size:14px; opacity:0.95;">Our plan:</div>');
-          parts.push(
-            '<div style="font-size:18px; font-weight:bold; margin-top:4px;">' +
-              (plan.choice || "Online date") +
-              ' ✨</div>'
-          );
-          parts.push(
-            '<div style="font-size:13px; opacity:0.9; margin-top:2px;">' +
-              (plan.when || "") +
-              "</div>"
-          );
-          if (plan.note) {
-            parts.push(
-              '<div style="margin-top:6px; font-size:13px; opacity:0.85;">' +
-                plan.note +
-                "</div>"
-            );
-          }
-        }
-
-        const pickLine = [];
-        if (food.length) pickLine.push("Food: <b>" + food.join(", ") + "</b>");
-        if (dessert.length)
-          pickLine.push("Dessert: <b>" + dessert.join(", ") + "</b>");
-        if (acts.length)
-          pickLine.push("After: <b>" + acts.join(", ") + "</b>");
-
-        if (pickLine.length) {
-          parts.push(
-            '<div style="margin-top:8px; font-size:13px; opacity:0.9;">' +
-              pickLine.join(" • ") +
-              "</div>"
-          );
-        }
-
-        if (!parts.length) return;
-
-        document.getElementById("recap").innerHTML =
-          '<div style="background:#ffe3e1; border:2px solid rgba(255,148,148,0.25); border-radius:16px; box-shadow: 1px 1px 2px #ff9494; padding: 12px;">' +
-          parts.join("") +
-          "</div>";
-      })();
+      // Extra floating flowers/hearts
+      const icons = ["💖","🌸","🌷","💐","✨"];
+      for(let i=0;i<18;i++){
+        const h = document.createElement("div");
+        h.className = "floatHeart";
+        h.textContent = icons[Math.floor(Math.random()*icons.length)];
+        h.style.left = (Math.random()*100) + "vw";
+        h.style.fontSize = (14 + Math.random()*18) + "px";
+        h.style.animationDelay = (Math.random()*1.5) + "s";
+        document.body.appendChild(h);
+        setTimeout(()=>h.remove(), 4500);
+      }
     </script>
   </body>
 </html>
