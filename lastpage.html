@@ -98,7 +98,13 @@
         </section>
 
         <div style="margin-top:16px;">
-          <button class="btn btnPrimary btnFull" onclick="location.href='index.html'">
+          <button class="btn btnPrimary btnFull" id="shareBtn">
+            Copy our plan 💌 (send it to me)
+          </button>
+        </div>
+
+        <div style="margin-top:10px;">
+          <button class="btn btnGhost btnFull" onclick="location.href='index.html'">
             Thank you for being my Valentine, I love you soooooooo much 💗
           </button>
         </div>
@@ -108,17 +114,44 @@
     </main>
 
     <script>
+      // Read answers (these live on HER device)
       const online = localStorage.getItem("online_choice") || "—";
       const when = localStorage.getItem("online_when") || "Any day";
       const food = localStorage.getItem("food_choice") || "—";
-      const dessert = localStorage.getItem("dessert_choice") || "—";
+
+      // Robust dessert read (in case any older version used a different key)
+      const dessert =
+        localStorage.getItem("dessert_choice") ||
+        localStorage.getItem("dessertChoice") ||
+        "—";
 
       document.getElementById("r1").textContent = online;
       document.getElementById("r2").textContent = when;
       document.getElementById("r3").textContent = food;
       document.getElementById("r4").textContent = dessert;
 
-      // More flowers everywhere
+      // Copy & send button (Option A)
+      const shareBtn = document.getElementById("shareBtn");
+      shareBtn.addEventListener("click", async () => {
+        const msg =
+`Valentine plan 💖
+Online date: ${online}
+Day: ${when}
+Food: ${food}
+Dessert: ${dessert}
+
+Okay… now you have to show up 😌`;
+
+        try {
+          await navigator.clipboard.writeText(msg);
+          shareBtn.textContent = "Copied ✅ Now paste it to me 💌";
+          setTimeout(() => (shareBtn.textContent = "Copy our plan 💌 (send it to me)"), 2200);
+        } catch {
+          prompt("Copy this and send it to me:", msg);
+        }
+      });
+
+      // Extra flowers/hearts
       const icons = ["🌸","🌷","💐","🌺","✨","💖","🪻","🌼"];
       for(let i=0;i<34;i++){
         const h = document.createElement("div");
