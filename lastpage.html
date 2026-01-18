@@ -6,56 +6,70 @@
     <title>For You 💐</title>
     <link rel="stylesheet" href="css/theme.css" />
     <style>
-      /* Full-screen flower background */
-      body{
-        overflow-x:hidden;
-      }
+      body{ overflow-x:hidden; }
+
       .flowerField{
         position: fixed;
         inset: 0;
         z-index: 0;
         pointer-events:none;
         background:
-          radial-gradient(18px 18px at 10% 85%, rgba(255,95,158,.20), transparent 60%),
-          radial-gradient(16px 16px at 22% 78%, rgba(255,148,148,.22), transparent 60%),
-          radial-gradient(22px 22px at 35% 90%, rgba(255,95,158,.18), transparent 60%),
-          radial-gradient(18px 18px at 55% 80%, rgba(255,148,148,.22), transparent 60%),
-          radial-gradient(20px 20px at 72% 88%, rgba(255,95,158,.18), transparent 60%),
-          radial-gradient(16px 16px at 88% 76%, rgba(255,148,148,.22), transparent 60%),
-          radial-gradient(22px 22px at 92% 92%, rgba(255,95,158,.16), transparent 60%),
+          radial-gradient(18px 18px at 8% 86%, rgba(255,95,158,.22), transparent 60%),
+          radial-gradient(16px 16px at 16% 78%, rgba(255,148,148,.22), transparent 60%),
+          radial-gradient(22px 22px at 28% 92%, rgba(255,95,158,.18), transparent 60%),
+          radial-gradient(18px 18px at 40% 80%, rgba(255,148,148,.22), transparent 60%),
+          radial-gradient(20px 20px at 55% 90%, rgba(255,95,158,.18), transparent 60%),
+          radial-gradient(16px 16px at 70% 82%, rgba(255,148,148,.22), transparent 60%),
+          radial-gradient(22px 22px at 84% 92%, rgba(255,95,158,.18), transparent 60%),
+          radial-gradient(18px 18px at 92% 78%, rgba(255,148,148,.22), transparent 60%),
           radial-gradient(1200px 600px at 50% 0%, #ffe3e1, #fff5e4);
         animation: drift 10s ease-in-out infinite alternate;
       }
       @keyframes drift{
         from{ filter: saturate(1.05); transform: translateY(0px); }
-        to{ filter: saturate(1.15); transform: translateY(-10px); }
+        to{ filter: saturate(1.18); transform: translateY(-10px); }
       }
 
-      .content{
-        position: relative;
-        z-index: 1;
-      }
+      .content{ position: relative; z-index: 1; }
 
       .recap{
         padding:16px 14px;
-        margin-top: 10px;
+        margin-top: 12px;
         text-align:left;
+        border-radius: 18px;
+        background: rgba(255,255,255,.72);
+        border: 1px solid rgba(255,95,158,.20);
       }
       .recap h2{
-        margin:0 0 10px;
+        margin:0 0 12px;
         font-size: 18px;
+        font-weight: 1000;
       }
       .line{
-        margin: 8px 0;
-        color: rgba(59,43,43,.82);
-        font-size: 15px;
+        display:flex;
+        gap:10px;
+        align-items:baseline;
+        padding: 9px 0;
+        border-bottom: 1px solid rgba(255,95,158,.10);
       }
+      .line:last-child{ border-bottom:none; }
       .label{
+        width: 108px;
         font-size:12px;
-        color: rgba(59,43,43,.55);
+        color: rgba(47,34,34,.55);
         text-transform: uppercase;
         letter-spacing: .6px;
-        margin-right: 8px;
+        flex: 0 0 auto;
+      }
+      .val{
+        font-size: 15px;
+        font-weight: 900;
+        color: rgba(47,34,34,.88);
+      }
+      .loveNote{
+        margin-top: 12px;
+        font-size: 14px;
+        color: rgba(47,34,34,.70);
       }
     </style>
   </head>
@@ -70,27 +84,32 @@
           Even miles apart, you’re still my favorite person. 🤍
         </p>
 
-        <section class="card recap" style="box-shadow:none;">
+        <section class="recap">
           <h2>Our plan ✨</h2>
-          <div class="line"><span class="label">Online date</span> <span id="r1">—</span></div>
-          <div class="line"><span class="label">When</span> <span id="r2">—</span></div>
-          <div class="line"><span class="label">Food</span> <span id="r3">—</span></div>
-          <div class="line"><span class="label">Dessert</span> <span id="r4">—</span></div>
+
+          <div class="line"><div class="label">Online date</div><div class="val" id="r1">—</div></div>
+          <div class="line"><div class="label">Day</div><div class="val" id="r2">—</div></div>
+          <div class="line"><div class="label">Food</div><div class="val" id="r3">—</div></div>
+          <div class="line"><div class="label">Dessert</div><div class="val" id="r4">—</div></div>
+
+          <div class="loveNote">
+            Thank you for choosing me — I’m yours, and you’re mine. 💖
+          </div>
         </section>
 
-        <div style="margin-top:14px;">
+        <div style="margin-top:16px;">
           <button class="btn btnPrimary btnFull" onclick="location.href='index.html'">
-            Replay 🔁
+            Thank you for being my Valentine, I love you soooooooo much 💗
           </button>
         </div>
 
-        <div class="smallNote">P.S. you choosing “Yes” is my favorite decision 😄</div>
+        <div class="tip" style="margin-top:12px;">P.S. your “Yes” made me smile like an idiot 😄</div>
       </section>
     </main>
 
     <script>
       const online = localStorage.getItem("online_choice") || "—";
-      const when = localStorage.getItem("online_when") || "—";
+      const when = localStorage.getItem("online_when") || "Any day";
       const food = localStorage.getItem("food_choice") || "—";
       const dessert = localStorage.getItem("dessert_choice") || "—";
 
@@ -99,17 +118,17 @@
       document.getElementById("r3").textContent = food;
       document.getElementById("r4").textContent = dessert;
 
-      // Extra floating flowers/hearts
-      const icons = ["💖","🌸","🌷","💐","✨"];
-      for(let i=0;i<18;i++){
+      // More flowers everywhere
+      const icons = ["🌸","🌷","💐","🌺","✨","💖","🪻","🌼"];
+      for(let i=0;i<34;i++){
         const h = document.createElement("div");
         h.className = "floatHeart";
         h.textContent = icons[Math.floor(Math.random()*icons.length)];
         h.style.left = (Math.random()*100) + "vw";
-        h.style.fontSize = (14 + Math.random()*18) + "px";
-        h.style.animationDelay = (Math.random()*1.5) + "s";
+        h.style.fontSize = (14 + Math.random()*22) + "px";
+        h.style.animationDelay = (Math.random()*1.6) + "s";
         document.body.appendChild(h);
-        setTimeout(()=>h.remove(), 4500);
+        setTimeout(()=>h.remove(), 5000);
       }
     </script>
   </body>
