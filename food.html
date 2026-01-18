@@ -3,70 +3,55 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Food Selection</title>
-    <link rel="stylesheet" href="css/food.css" />
+    <title>Food 🍜</title>
+    <link rel="stylesheet" href="css/theme.css" />
   </head>
-  <body>
-    <div id="foodquestion">
-      <b>What should we eat together on call?</b>
-    </div>
 
-    <div class="food-selection">
-      <div class="food-item">
-        <img src="food/burgers.jpeg" alt="Burgers, fries and fried chicken" />
-        <label
-          ><input
-            type="checkbox"
-            name="food"
-            value="Burgers, fries and fried chicken"
-          />
-          burgers and fried chicken</label
-        >
-      </div>
-      <div class="food-item">
-        <img src="food/dog.jpeg" alt="dog" />
-        <label
-          ><input type="checkbox" name="food" value="hotdog" /> hotdog</label
-        >
-      </div>
-      <div class="food-item">
-        <img src="food/koreanfood.jpeg" alt="koreanfood" />
-        <label
-          ><input type="checkbox" name="food" value="Korean food" /> korean
-          food</label
-        >
-      </div>
-      <div class="food-item">
-        <img src="food/pasta.jpeg" alt="pasta" />
-        <label><input type="checkbox" name="food" value="pasta" /> pasta</label>
-      </div>
-      <div class="food-item">
-        <img src="food/pizza.jpeg" alt="pizza" />
-        <label><input type="checkbox" name="food" value="pizza" /> pizza</label>
-      </div>
-      <div class="food-item">
-        <img src="food/salad.jpeg" alt="salad" />
-        <label><input type="checkbox" name="food" value="salad" /> salad</label>
-      </div>
-      <div class="food-item">
-        <img src="food/steak.jpeg" alt="steak" />
-        <label><input type="checkbox" name="food" value="steak" /> steak</label>
-      </div>
-      <div class="food-item">
-        <img src="food/sushi.jpeg" alt="sushi" />
-        <label><input type="checkbox" name="food" value="sushi" /> sushi</label>
-      </div>
-    </div>
-    <button class="button" onclick="saveAndGo()">Continue UWU</button>
+  <body>
+    <main class="wrap">
+      <section class="card" style="padding:18px 16px 18px;">
+        <div class="title">Choose our food 🍽️</div>
+        <p class="subtitle">Just pick what you’d crave most.</p>
+
+        <div class="grid" id="foodGrid">
+          <div class="option" data-food="Pizza 🍕"><div class="optionTitle">Pizza 🍕</div><p class="optionText">Classic comfort</p></div>
+          <div class="option" data-food="Sushi 🍣"><div class="optionTitle">Sushi 🍣</div><p class="optionText">Fancy mood</p></div>
+          <div class="option" data-food="Ramen 🍜"><div class="optionTitle">Ramen 🍜</div><p class="optionText">Warm vibes</p></div>
+          <div class="option" data-food="Burgers 🍔"><div class="optionTitle">Burgers 🍔</div><p class="optionText">Easy win</p></div>
+        </div>
+
+        <div style="margin-top:14px;">
+          <span class="pill" id="foodPicked">Chosen: tap an option ✨</span>
+        </div>
+
+        <div style="margin-top:14px;">
+          <button class="btn btnPrimary btnFull" id="foodNext" disabled>Continue 🍰</button>
+        </div>
+
+        <div class="smallNote">We can always change it later — this is just for cute planning 😄</div>
+      </section>
+    </main>
 
     <script>
-      function saveAndGo() {
-        const picks = Array.from(
-          document.querySelectorAll('input[name="food"]:checked')
-        ).map((x) => x.value);
-        localStorage.setItem("valentine_food", JSON.stringify(picks));
+      const items = document.querySelectorAll(".option");
+      const picked = document.getElementById("foodPicked");
+      const next = document.getElementById("foodNext");
+      let choice = "";
+
+      items.forEach(i => {
+        i.addEventListener("click", () => {
+          items.forEach(x => x.classList.remove("active"));
+          i.classList.add("active");
+          choice = i.dataset.food;
+          picked.textContent = "Chosen: " + choice;
+          next.disabled = false;
+        });
+      });
+
+      next.addEventListener("click", () => {
+        localStorage.setItem("food_choice", choice);
         location.href = "dessert.html";
-      }
+      });
     </script>
   </body>
 </html>
