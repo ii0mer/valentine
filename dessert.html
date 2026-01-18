@@ -24,7 +24,7 @@
             <p class="optionText">Warm + cozy</p>
           </div>
 
-          <div class="option" data-dessert="Her uwu 🥺">
+          <div class="option" data-dessert="You uwu 🥺">
             <div class="optionTitle">You uwu 🥺</div>
             <p class="optionText">Best dessert (obviously)</p>
           </div>
@@ -64,6 +64,7 @@
       });
 
       next.addEventListener("click", () => {
+        // Save EXACTLY here, consistently:
         localStorage.setItem("dessert_choice", choice);
         location.href = "lastpage.html";
       });
