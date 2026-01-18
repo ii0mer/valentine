@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/flower.css" />
   </head>
   <body>
+    <div id="recap" style="max-width: 860px; margin: 0 auto 10px; padding: 12px 12px 6px;"></div>
     <div id="thankyou"><b>Thank you for being my girlfriend</b></div>
     <div class="flower">
       <div class="f-wrapper">
@@ -58,5 +59,66 @@
       </div>
       <div class="flower__glass"></div>
     </div>
+
+    <script>
+      (function () {
+        function safeParse(key) {
+          try {
+            return JSON.parse(localStorage.getItem(key) || "null");
+          } catch (e) {
+            return null;
+          }
+        }
+
+        const plan = safeParse("valentine_plan");
+        const food = safeParse("valentine_food") || [];
+        const dessert = safeParse("valentine_dessert") || [];
+        const acts = safeParse("valentine_activities") || [];
+
+        const parts = [];
+        if (plan && (plan.choice || plan.when)) {
+          parts.push('<div style="font-size:14px; opacity:0.95;">Our plan:</div>');
+          parts.push(
+            '<div style="font-size:18px; font-weight:bold; margin-top:4px;">' +
+              (plan.choice || "Online date") +
+              ' ✨</div>'
+          );
+          parts.push(
+            '<div style="font-size:13px; opacity:0.9; margin-top:2px;">' +
+              (plan.when || "") +
+              "</div>"
+          );
+          if (plan.note) {
+            parts.push(
+              '<div style="margin-top:6px; font-size:13px; opacity:0.85;">' +
+                plan.note +
+                "</div>"
+            );
+          }
+        }
+
+        const pickLine = [];
+        if (food.length) pickLine.push("Food: <b>" + food.join(", ") + "</b>");
+        if (dessert.length)
+          pickLine.push("Dessert: <b>" + dessert.join(", ") + "</b>");
+        if (acts.length)
+          pickLine.push("After: <b>" + acts.join(", ") + "</b>");
+
+        if (pickLine.length) {
+          parts.push(
+            '<div style="margin-top:8px; font-size:13px; opacity:0.9;">' +
+              pickLine.join(" • ") +
+              "</div>"
+          );
+        }
+
+        if (!parts.length) return;
+
+        document.getElementById("recap").innerHTML =
+          '<div style="background:#ffe3e1; border:2px solid rgba(255,148,148,0.25); border-radius:16px; box-shadow: 1px 1px 2px #ff9494; padding: 12px;">' +
+          parts.join("") +
+          "</div>";
+      })();
+    </script>
   </body>
 </html>
