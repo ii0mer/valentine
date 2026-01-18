@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <title>Be My Valentine</title>
     <link rel="stylesheet" href="css/theme.css" />
   </head>
@@ -19,18 +19,27 @@
           <button class="btn btnPrimary" id="yesBtn" onclick="location.href='thankyou.html'">
             Yes 💖
           </button>
+
           <button class="btn btnGhost" id="noButton">
             I no no wanna o(╥﹏╥)o
           </button>
         </div>
 
-        <img src="cat.gif" alt="cat asking question" class="imgHero" />
-        <div class="smallNote">Tip: try pressing “No” 😄</div>
+        <img src="cat.gif" alt="cute cat" class="imgHero" />
+
+        <div class="tip">Tip: press “No” 😄</div>
       </section>
     </main>
 
     <script>
-      // Make YES grow when she presses NO (your original idea, but smoother)
+      // Prevent iOS double-tap zoom feeling on rapid taps
+      let lastTouchEnd = 0;
+      document.addEventListener("touchend", function (event) {
+        const now = Date.now();
+        if (now - lastTouchEnd <= 300) event.preventDefault();
+        lastTouchEnd = now;
+      }, { passive: false });
+
       const noButton = document.getElementById("noButton");
       const yesBtn = document.getElementById("yesBtn");
 
@@ -38,14 +47,14 @@
         const current = parseFloat(getComputedStyle(yesBtn).fontSize);
         yesBtn.style.fontSize = (current + 4) + "px";
 
-        // little hearts
-        for (let i = 0; i < 6; i++) {
+        const icons = ["💖","💕","✨","🌸"];
+        for (let i = 0; i < 7; i++) {
           const h = document.createElement("div");
           h.className = "floatHeart";
-          h.textContent = "💖";
+          h.textContent = icons[Math.floor(Math.random() * icons.length)];
           h.style.left = (Math.random() * 100) + "vw";
-          h.style.fontSize = (14 + Math.random() * 16) + "px";
-          h.style.animationDelay = (Math.random() * 0.5) + "s";
+          h.style.fontSize = (14 + Math.random() * 18) + "px";
+          h.style.animationDelay = (Math.random() * 0.4) + "s";
           document.body.appendChild(h);
           setTimeout(() => h.remove(), 3500);
         }
