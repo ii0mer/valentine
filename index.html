@@ -4,29 +4,52 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Be My Valentine</title>
-    <link rel="stylesheet" href="css/valentine.css" />
+    <link rel="stylesheet" href="css/theme.css" />
   </head>
+
   <body>
-    <div id="valentineQuestion"><b>Noorain, will you be my Valentine? 💘</b></div>
-    <button class="answerButton" onclick="location.href='thankyou.html'">
-      Yes
-    </button>
-    <button class="answerButton" id="noButton">I no no wanna o(╥﹏╥)o</button>
-    <br />
-    <img src="cat.gif" alt="cat asking question" class="responsive" />
+    <main class="wrap">
+      <section class="card" style="padding:18px 16px 22px;">
+        <div class="title">
+          <span class="pink">Noorain</span>, will you be my Valentine? 💘
+        </div>
+        <p class="subtitle">Long distance… same heart. 🤍</p>
+
+        <div class="row">
+          <button class="btn btnPrimary" id="yesBtn" onclick="location.href='thankyou.html'">
+            Yes 💖
+          </button>
+          <button class="btn btnGhost" id="noButton">
+            I no no wanna o(╥﹏╥)o
+          </button>
+        </div>
+
+        <img src="cat.gif" alt="cat asking question" class="imgHero" />
+        <div class="smallNote">Tip: try pressing “No” 😄</div>
+      </section>
+    </main>
 
     <script>
-      document
-        .getElementById("noButton")
-        .addEventListener("click", function () {
-          var yesButton = document.querySelector(
-            'button[onclick*="thankyou.html"]'
-          );
-          var currentFontSize = parseInt(
-            window.getComputedStyle(yesButton).fontSize
-          );
-          yesButton.style.fontSize = currentFontSize + 10 + "px"; // Increase font size by 5px
-        });
+      // Make YES grow when she presses NO (your original idea, but smoother)
+      const noButton = document.getElementById("noButton");
+      const yesBtn = document.getElementById("yesBtn");
+
+      noButton.addEventListener("click", () => {
+        const current = parseFloat(getComputedStyle(yesBtn).fontSize);
+        yesBtn.style.fontSize = (current + 4) + "px";
+
+        // little hearts
+        for (let i = 0; i < 6; i++) {
+          const h = document.createElement("div");
+          h.className = "floatHeart";
+          h.textContent = "💖";
+          h.style.left = (Math.random() * 100) + "vw";
+          h.style.fontSize = (14 + Math.random() * 16) + "px";
+          h.style.animationDelay = (Math.random() * 0.5) + "s";
+          document.body.appendChild(h);
+          setTimeout(() => h.remove(), 3500);
+        }
+      });
     </script>
   </body>
 </html>
